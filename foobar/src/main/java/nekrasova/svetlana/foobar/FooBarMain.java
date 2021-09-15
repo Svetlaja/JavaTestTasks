@@ -38,6 +38,7 @@ public class FooBarMain {
 				break;
 			case 4:
 				printByTernary(n);
+				break;
 			case 5:
 				printByStream(n);
 				break;
