@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add Applicant</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="#" th:action="@{/update/{id}(id=${appl.id})}" th:object="${appl}"
+		method="post">
+		<label for="firstName">First Name</label> 
+		<input type="text" th:field="*{firstName}" id="firstName"> 
+		<label for="lastName">Last Name</label> 
+		<input type="text" th:field="*{lastName}" id="lastName">
+		<label for="city">City</label>
+		<input type="text" th:field="*{city}" id="city"> <input
+			type="submit" value="Update Applicant">
+	</form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Applicants</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:switch="${applicants}">
+		<h2 th:case="null">No applicants!</h2>
+		<div th:case="*">
+			<h2>Applicants</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>City</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="appl : ${applicants}">
+						<td th:text="${appl.firstName}"></td>
+						<td th:text="${appl.lastName}"></td>
+						<td th:text="${appl.city}"></td>
+						<td><a th:href="@{/edit/{id}(id=${appl.id})}">Edit</a></td>
+						<td><a th:href="@{/delete/{id}(id=${appl.id})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p>
+			<a href="/addnew">Add a new applicant</a>
+		</p>
+	</div> 
+	<form method="POST" th:action="@{/upload-csv-file}" enctype="multipart/form-data">
+    <div class="form-group mt-3">
+        <label for="file">Select a CSV file</label>
+        <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
+    </div>
+    <button type="submit" class="btn btn-primary">Download Applicants</button>
+</form>
+</body>
+</html>
