@@ -11,8 +11,9 @@ public class FooBarMain {
 		System.out.println("Enter version: ");
 		System.out.println("1 - cycle");
 		System.out.println("2 - cycle & switch");
-		System.out.println("3 - ternary operator");
-		System.out.println("4 - Stream");
+		System.out.println("3 - cycle & two if");
+		System.out.println("4 - ternary operator");
+		System.out.println("5 - Stream");
 
 		try (BufferedReader in = new BufferedReader(new InputStreamReader(System.in));) {
 			int verNum = Integer.parseInt(in.readLine());
@@ -26,15 +27,18 @@ public class FooBarMain {
 			}
 
 			switch (verNum) {
-			case (1):
+			case 1:
 				printByCycle(n);
 				break;
-			case (2):
+			case 2:
 				printByCycleAndSwitch(n);
 				break;
-			case (3):
+			case 3:
+				printByTwoIf(n);
+				break;
+			case 4:
 				printByTernary(n);
-			case (4):
+			case 5:
 				printByStream(n);
 				break;
 			default:
@@ -64,6 +68,20 @@ public class FooBarMain {
 		}
 	}
 
+	private static void printByTwoIf(int n) {
+
+		for (int i = 1; i <= n; i++) {
+			String result = Integer.toString(i);
+			if (i % 3 == 0) {
+				result = result.replace(Integer.toString(i), "") + "Foo";
+			}
+			if (i % 5 == 0) {
+				result = result.replace(Integer.toString(i), "") + "Bar";
+			}
+			System.out.println(result);
+		}
+	}
+
 	private static void printByCycleAndSwitch(int n) {
 
 		for (int i = 1; i <= n; i++) {
@@ -90,7 +108,6 @@ public class FooBarMain {
 		}
 	}
 
-	
 	private static void printByStream(int n) {
 		IntStream.rangeClosed(1, n).mapToObj(
 				i -> (i % 15 == 0) ? "FooBar" : (i % 3 == 0) ? "Foo" : (i % 5 == 0) ? "Bar" : Integer.toString(i))
